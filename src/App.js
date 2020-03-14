@@ -1,13 +1,14 @@
 import React from "react";
 import { Card, CardBody, CardHeader, Container, Row, Col } from "reactstrap";
 import Login from "./components/auth/Login";
-import Request from "./rpc/Request";
+import Request from "react-axios-request/Request";
+import { apiBaseUrl } from "./config";
 
 const App = () => (
   <Container>
     <Row className="align-items-center vh-100">
       <Col md={6}>
-        <Request>
+        <Request path={apiBaseUrl}>
           {({ data }) => (
             <Card>
               <CardHeader>

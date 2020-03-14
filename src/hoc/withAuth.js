@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import Request from "../rpc/Request";
+import Request from "react-axios-request/Request";
 
 const withAuth = Component => props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Request type="POST" route="auth/login">
-      {({ error, cb }) => {
+      {({ error, rcb }) => {
         const login = async (e, body, callback) => {
           e.preventDefault();
-          const { accessToken } = await cb(body);
+          const { accessToken } = await rcb(body);
+          console.log(accessToken);
 
           if (accessToken) {
             localStorage.setItem("accessToken", accessToken);

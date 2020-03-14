@@ -25,6 +25,7 @@ const Login = () => {
   ) : (
     <>
       <h1>Login</h1>
+      {/*  */}
       <Form onSubmit={e => login(e, { username, password }, cleanUp)}>
         <FormGroup>
           <Label htmlFor="username">Username</Label>
@@ -50,6 +51,8 @@ const Login = () => {
         {error && (
           <p className="text-danger mt-2">
             Username and/or Passowrd do(es)n't match. Please try again.
+            <br />
+            <small className="text-italic">{error.message}</small>
           </p>
         )}
       </Form>

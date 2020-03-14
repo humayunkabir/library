@@ -3,6 +3,13 @@ import PropTypes from "prop-types";
 import { apiBaseUrl } from "../config";
 import Axios from "axios";
 
+class RequestException {
+  constructor(message) {
+    this.message = message;
+    this.name = "RequestException";
+  }
+}
+
 const Request = ({ type, route, body, children }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -21,13 +28,14 @@ const Request = ({ type, route, body, children }) => {
   };
 
   const cb = async props => {
-    if (type === "POST") {
-      try {
-        const result = await Axios.post(url, body || props);
-        return handleData(result);
-      } catch (error) {
-        return handleError(error);
+    try {
+      if (!(body || props)) {
+        throw new RequestException("Request body is reqired");
       }
+      const result = await Axios[type.toLowerCase()](url, body || props);
+      return handleData(result);
+    } catch (error) {
+      return handleError(error);
     }
   };
 

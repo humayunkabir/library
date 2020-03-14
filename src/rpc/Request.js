@@ -20,14 +20,6 @@ const Request = ({ type, route, body, children }) => {
     return processedError;
   };
 
-  // const cb = props => {
-  //   if (type === "POST") {
-  //     return Axios.post(url, body || props)
-  //       .then(handleData)
-  //       .catch(handleError);
-  //   }
-  // };
-
   const cb = async props => {
     if (type === "POST") {
       try {

@@ -1,32 +1,34 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { apiBaseUrl } from "../config";
+import Request from "../rpc/Request";
 
 const withAuth = Component => props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const login = (username, password) => {
-    return axios
-      .post(`${apiBaseUrl}/auth/login`, { username, password })
-      .then(({ status, statusText, data }) => {
-        const { accessToken } = data;
-        localStorage.setItem("accessToken", accessToken);
-        setIsLoggedIn(true);
-        return { name: statusText, status };
-      })
-      .catch(error => {
-        return JSON.parse(JSON.stringify(error));
-      });
-  };
+  return (
+    <Request type="POST" route="auth/login">
+      {({ error, cb }) => {
+        const login = async (e, body, callback) => {
+          e.preventDefault();
+          const { accessToken } = await cb(body);
 
-  const logout = () => {
-    localStorage.removeItem("accessToken");
-    setIsLoggedIn(false);
-  };
+          if (accessToken) {
+            localStorage.setItem("accessToken", accessToken);
+            setIsLoggedIn(true);
+            !!callback && callback();
+          }
+        };
 
-  const auth = { isLoggedIn, login, logout };
+        const logout = () => {
+          localStorage.removeItem("accessToken");
+          setIsLoggedIn(false);
+        };
 
-  return <Component auth={auth} {...props} />;
+        return (
+          <Component auth={{ login, logout, isLoggedIn, error }} {...props} />
+        );
+      }}
+    </Request>
+  );
 };
 
 export default withAuth;

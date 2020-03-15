@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import Request from "react-axios-request/Request";
+import Request from "react-axios-request/dist/Request";
 
 const withAuth = Component => props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Request type="POST" route="auth/login">
-      {({ error, rcb }) => {
+      {({ error, requestCallback }) => {
         const login = async (e, body, callback) => {
           e.preventDefault();
-          const { accessToken } = await rcb(body);
+          const { accessToken } = await requestCallback(body);
           console.log(accessToken);
 
           if (accessToken) {

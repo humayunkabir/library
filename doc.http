@@ -1,0 +1,3 @@
+@baseUrl = http://localhost:5000
+
+curl {{baseUrl}} -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' -H 'DNT: 1' -H 'Upgrade-Insecure-Requests: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36' -H 'Sec-Fetch-Dest: document' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' -H 'Sec-Fetch-Site: none' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-User: ?1' -H 'Accept-Language: en-US,en;q=0.9,it;q=0.8,fr;q=0.7,la;q=0.6' -H 'Cookie: Webstorm-c41a2bbe=84d21670-c8f8-497e-90cc-cca3650bc9c2; io=IZJqWh4EGfyUbZ_7AAAQ' --compressed

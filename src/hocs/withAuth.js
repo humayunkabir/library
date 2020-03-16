@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Request from "react-axios-request/dist/Request";
+import { Request } from "react-axios-request";
 
 const withAuth = Component => props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -1,7 +1,8 @@
 import React from "react"; // , { useEffect, useState }
 import ReactAxiosRequest from "../common/ReactAxiosRequest";
-import { isIterableArray } from "../../helper/utils";
+import { isIterableArray } from "../../helpers/utils";
 import User from "./User";
+import { Row, Col, Container } from "reactstrap";
 
 // import Axios from "axios";
 // import { apiBaseUrl } from "../../config";
@@ -38,20 +39,28 @@ const Users = () => {
     <ReactAxiosRequest route="users">
       {({ loading, data, error }) => {
         if (error) {
-          return <p className="text-danger">{error.message}</p>;
+          return (
+            <Container>
+              <p className="text-danger">{error.message}</p>
+            </Container>
+          );
         }
 
-        return loading
-          ? "Loading..."
-          : isIterableArray(data) && (
-              <ul>
-                {data.map(user => (
-                  <li key={user.id}>
-                    <User user={user} />
-                  </li>
-                ))}
-              </ul>
-            );
+        return (
+          <Container>
+            {loading
+              ? "Loading..."
+              : isIterableArray(data) && (
+                  <Row>
+                    {data.map(user => (
+                      <Col md={6} lg={4} className="mt-5" key={user.id}>
+                        <User user={user} />
+                      </Col>
+                    ))}
+                  </Row>
+                )}
+          </Container>
+        );
       }}
     </ReactAxiosRequest>
   );

@@ -1,6 +1,6 @@
-import useAppDispatch from "./useAppDispatch";
-import { actionType } from "../reducer/appReducer";
-import token from "../helper/token";
+import { actionType } from "../reducers/appReducer";
+import { setToken, clearToken } from "../helpers/token";
+import { useAppDispatch } from "../providers/AppProvider";
 
 const useAuth = () => {
   const dispatch = useAppDispatch();
@@ -11,7 +11,7 @@ const useAuth = () => {
 
       if (response?.data) {
         const { accessToken, ...rest } = response?.data;
-        token({ type: "set", token: accessToken });
+        setToken(accessToken);
         dispatch({
           type: actionType.LOGIN,
           payload: rest
@@ -25,6 +25,7 @@ const useAuth = () => {
   };
 
   const logout = () => {
+    clearToken();
     dispatch({ type: actionType.LOGOUT });
   };
 

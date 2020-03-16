@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import AppProvider from "./context/providers/AppProvider";
+import AppProvider from "./providers/AppProvider";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 

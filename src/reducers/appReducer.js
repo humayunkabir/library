@@ -1,5 +1,3 @@
-import token from "../helper/token";
-
 export const actionType = {
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT"
@@ -13,7 +11,6 @@ const appReducer = (state, action) => {
       return { ...state, user: payload };
 
     case actionType.LOGOUT:
-      token({ type: "clear" });
       return { ...state, user: null };
 
     default:

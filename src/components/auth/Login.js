@@ -18,13 +18,15 @@ import ReactAxiosRequest from "../common/ReactAxiosRequest";
 const Login = () => {
   const { login } = useAuth();
 
-  const [username, setUsername] = useState("humayunkabir");
-  const [password, setPassword] = useState("pass");
+  const [username, setUsername] = useState("test");
+  const [password, setPassword] = useState("test");
 
   const cleanUp = () => {
     setUsername("");
     setPassword("");
   };
+
+  console.log("Hello from Login!!");
 
   return (
     <Container>

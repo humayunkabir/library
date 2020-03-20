@@ -1,8 +1,9 @@
-export const getToken = () => localStorage.getItem("accessToken");
-export const setToken = token => localStorage.setItem("accessToken", token);
-export const clearToken = () => localStorage.removeItem("accessToken");
+const jwtTokenName = "accessToken";
+export const getToken = () => localStorage.getItem(jwtTokenName);
+export const setToken = token => localStorage.setItem(jwtTokenName, token);
+export const clearToken = () => localStorage.removeItem(jwtTokenName);
 
-export const token = ({ type, token }) => {
+export const token = (type = "get", token) => {
   switch (type) {
     case "get":
       return getToken();
@@ -18,4 +19,4 @@ export const token = ({ type, token }) => {
   }
 };
 
-export default { getToken, setToken, clearToken };
+export default token;

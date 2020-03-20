@@ -1,43 +1,14 @@
-import React from "react"; // , { useEffect, useState }
+import React from "react";
+import { Row, Col, Container } from "reactstrap";
 import ReactAxiosRequest from "../common/ReactAxiosRequest";
 import { isIterableArray } from "../../helpers/utils";
 import User from "./User";
-import { Row, Col, Container } from "reactstrap";
-
-// import Axios from "axios";
-// import { apiBaseUrl } from "../../config";
-// import token from "../../helper/token";
+import Debug from "../common/Debug";
 
 const Users = () => {
-  // const [users, setUsers] = useState(null);
-
-  // useEffect(() => {
-  //   if (state.user) {
-  //     const requestConfig = {
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token({ type: "get" })}`
-  //       }
-  //     };
-
-  //     Axios.get(`${apiBaseUrl}/users`, requestConfig)
-  //       .then(res => {
-  //         setUsers(res.data);
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //         setUsers(null);
-  //       });
-  //   } else {
-  //     setUsers(null);
-  //   }
-  // }, [state]);
-
-  // return <pre>{JSON.stringify(users, null, 2)}</pre>;
-
   return (
     <ReactAxiosRequest route="users">
-      {({ loading, data, error }) => {
+      {({ loading, data: users, error }) => {
         if (error) {
           return (
             <Container>
@@ -50,13 +21,21 @@ const Users = () => {
           <Container>
             {loading
               ? "Loading..."
-              : isIterableArray(data) && (
+              : isIterableArray(users) && (
                   <Row>
-                    {data.map(user => (
-                      <Col md={6} lg={4} className="mt-5" key={user.id}>
-                        <User user={user} />
-                      </Col>
-                    ))}
+                    <Col xs="auto">
+                      <Debug code={JSON.stringify(users, null, 2)} />
+                      {/* <pre>{JSON.stringify(users, null, 2)}</pre> */}
+                    </Col>
+                    <Col>
+                      <Row>
+                        {users.map(user => (
+                          <Col md={6} lg={4} className="mt-5" key={user.id}>
+                            <User user={user} />
+                          </Col>
+                        ))}
+                      </Row>
+                    </Col>
                   </Row>
                 )}
           </Container>

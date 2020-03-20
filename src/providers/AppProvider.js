@@ -21,11 +21,14 @@ export const useAppDispatch = () => {
   return context;
 };
 
+export const initialAppState = {
+  loaded: false,
+  user: null,
+  books: []
+};
+
 const AppProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(appReducer, {
-    user: null,
-    books: []
-  });
+  const [state, dispatch] = useReducer(appReducer, initialAppState);
 
   return (
     <AppStateContext.Provider value={state}>

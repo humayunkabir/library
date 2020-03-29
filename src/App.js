@@ -6,11 +6,7 @@ import { getToken } from "./helpers/token";
 import Axios from "axios";
 import { actionType } from "./reducers/appReducer";
 import { apiBaseUrl, requestConfig } from "./config";
-import {
-  useAppDispatch,
-  useAppState,
-  initialAppState
-} from "./providers/AppProvider";
+import { useAppDispatch, useAppState } from "./providers/AppProvider";
 
 const App = () => {
   const state = useAppState();
@@ -27,18 +23,21 @@ const App = () => {
         )
         .catch(error => {
           console.log(error);
-
-          dispatch({
-            type: actionType.GET_USER,
-            payload: null
-          });
+          if (error.message === "Network Error") {
+            alert("Check your network!");
+          } else {
+            dispatch({
+              type: actionType.GET_USER,
+              payload: null
+            });
+          }
         });
     } else {
       console.log("Welcome! Login!");
 
       dispatch({
         type: actionType.GET_USER,
-        payload: { ...initialAppState, loaded: true }
+        payload: null
       });
     }
   }, [dispatch]);

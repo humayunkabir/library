@@ -8,13 +8,14 @@ const useAuth = () => {
   const login = async (requestCallback, loginCallback) => {
     try {
       const response = await requestCallback();
+      console.log(response);
 
       if (response?.data) {
-        const { accessToken, ...rest } = response?.data;
+        const { accessToken, ...user } = response?.data;
         setToken(accessToken);
         dispatch({
           type: actionType.LOGIN,
-          payload: rest
+          payload: user
         });
 
         !!loginCallback && loginCallback();

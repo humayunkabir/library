@@ -51,7 +51,7 @@ const Settings = ({ user, history }) => {
                 }}
                 className="my-5"
               >
-                <CardHeader>Profile</CardHeader>
+                <CardHeader>Settings</CardHeader>
                 <CardBody>
                   <FormGroup>
                     <Label htmlFor="name">Name</Label>

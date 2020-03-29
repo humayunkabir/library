@@ -26,7 +26,7 @@ const AppNavbar = () => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <Navbar color="light" light expand="md">
+    <Navbar color="light" light expand="md" fixed="top">
       <NavbarBrand tag={Link} to="/" className="font-weight-bold">
         LMS
       </NavbarBrand>

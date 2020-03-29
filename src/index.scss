@@ -1,1 +1,13 @@
 @import "~bootstrap/scss/bootstrap.scss";
+$navbar-height: 56px;
+#root {
+  margin-top: $navbar-height;
+}
+.h-banner {
+  min-height: calc(100vh - #{$navbar-height});
+}
+
+section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}

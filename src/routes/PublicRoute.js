@@ -4,6 +4,7 @@ import { useAppState } from "../providers/AppProvider";
 
 const PublicRoute = ({ component: Component, render, ...rest }) => {
   const state = useAppState();
+
   return (
     <Route
       {...rest}

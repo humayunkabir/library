@@ -16,6 +16,8 @@ const PrivateRoute = ({
       {...rest}
       render={props => {
         if (!state.user) {
+          console.log("Redirect to /auth/login");
+
           return (
             <Redirect
               to={{
